@@ -2,9 +2,7 @@
 $mysql = new mysqli('localhost', 'root', '', 'blog');
 $mysql->set_charset('utf8');
 
-if ($mysql == TRUE) {
-    echo "Banco Conectado";
-} else {
+if ($mysql == FALSE)  {
     echo "Erro de conexão"  ;
 }
 

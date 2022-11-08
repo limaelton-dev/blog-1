@@ -1,22 +1,37 @@
 <?php
+ 
+require 'config.php';
+require 'src/Artigo.php';
+ 
 
-require_once 'config.php';
+$obj_artigo = new Artigo($mysql);
+$artigo = $obj_artigo->encontrarPorId($_GET['id']);
 
-class Artigo 
-{
-    private $mysql;
-
-    public function __construct(mysqli $mysql)
-    {
-        $this->mysql = $mysql;
-    }
-    public function exibeTodos(): array 
-    {
-
-        $resultado = $this->mysql->query('SELECT id, titulo, conteudo FROM artigos');
-        $artigos = $resultado->fetch_all(MYSQLI_ASSOC);
-        
-        return $artigos;
-    }
-}
 ?>
+
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>Meu Blog</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div id="container">
+        <h1>
+            <?php echo $artigo['titulo']; ?>
+        </h1>
+        <p>
+            <?php echo $artigo['conteudo']; ?>
+        </p>
+        <div>
+            <a class="botao botao-block" href="index.php">Voltar</a>
+        </div>
+    </div>
+</body>
+
+</html>

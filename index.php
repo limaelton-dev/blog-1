@@ -1,8 +1,8 @@
 
 <?php
 
-require_once 'config.php';
-require_once 'Artigo.php';
+require 'config.php';
+include 'src/Artigo.php';
 
 $artigo = new Artigo($mysql);
 $artigos = $artigo->exibeTodos();
@@ -22,7 +22,7 @@ $artigos = $artigo->exibeTodos();
         <h1>Meu Blog</h1>
         <?php foreach($artigos as $artigo): // esssa sintaxe é nova, é igual à {?>   
         <h2>
-            <a href="<?php echo $artigo['link']; ?>">
+            <a href="artigo.php?id=<?php echo $artigo['id'] ?>">
                 <?php echo $artigo['titulo']; ?>
             </a>
         </h2>
