@@ -9,10 +9,18 @@ class Artigo
         $this->mysql = $mysql;
     }
 
+    public function adicionar(string $titulo, string $conteudo): void
+    {
+        $insereArtigo = $this->mysql->prepare('INSERT INTO artigos (titulo, conteudo) VALUES(?,?);');
+            #recebi um objeto do tipo MySQLi_SMT, então chamamos o bind_param(), para vincular o valor recebido, com o valor que queremos usar
+        $insereArtigo->bind_param('ss', $titulo, $conteudo); //ss pq recebe 2 "?"
+        $insereArtigo->execute();
+    }   
+
     public function exibeTodos(): array 
     {
 
-        $resultado = $this->mysql->query('SELECT id, titulo, conteudo FROM artigos');
+        $resultado = $this->mysql->query('SELECT id, titulo, conteudo FROM artigos'); 
         $artigos = $resultado->fetch_all(MYSQLI_ASSOC);
         
         return $artigos;
