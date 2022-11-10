@@ -2,11 +2,14 @@
 
 require '../config.php';
 require '../src/Artigo.php';
+require '../src/redireciona.php';
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') { //verifica se o method é post, se for get ou outro, não acessa
     
     $artigo = new Artigo($mysql);
     $artigo->adicionar($_POST['titulo'], $_POST['conteudo']);
+
+    redireciona('/blog/admin/index.php');
 }
 ?>
 
