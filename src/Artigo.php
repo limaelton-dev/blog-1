@@ -24,6 +24,13 @@ class Artigo
         $removerArtigo->execute();
     }
 
+    public function editar(string $id, string $titulo, string $conteudo):void
+    {
+        $editarArt = $this->mysql->prepare('UPDATE artigos SET titulo = ?, conteudo = ? WHERE id = ?');
+        $editarArt->bind_param('sss', $titulo, $conteudo, $id);
+        $editarArt->execute();
+    }
+
     public function exibeTodos(): array 
     {
 

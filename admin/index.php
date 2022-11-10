@@ -3,6 +3,10 @@
 require '../config.php';
 include '../src/Artigo.php';
 
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+}
+
 $artigo = new Artigo($mysql);
 $artigos = $artigo->exibeTodos();
 ?>
@@ -24,7 +28,7 @@ $artigos = $artigo->exibeTodos();
             <div id="artigo-admin">
                 <p><?php echo $art['titulo']; ?></p>
                 <nav>
-                    <a class="botao" href="editar-artigo.html?id=<?php echo $art['id']; ?>">Editar</a>
+                    <a class="botao" href="editar-artigo.php?id=<?php echo $art['id']; ?>">Editar</a>
                     <a class="botao" href="excluir-artigo.php?id=<?php echo $art['id']; ?>">Excluir</a>
                 </nav>
             </div>
